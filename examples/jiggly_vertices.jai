@@ -5,8 +5,7 @@
 #import "glfw";
 
 Jiggly_Coloured_Vertex :: struct {
-    // The names and locations of these sub-structs have to match
-    // the shader attributes in the GLSL code.
+    // The names and locations of these sub-structs have to match the shader attributes in the GLSL code.
     attr_position: struct {
         x: float;
         y: float;
@@ -24,15 +23,13 @@ Jiggly_Coloured_Vertex :: struct {
         amount: float;
     }
 
-    /*
-    In the future we should have notes such as:
-
-      attribute: struct {
-          u, v: float;
-      } @Location=4
-
-    To specify attribute locations.
-    */
+    // In the future we should have notes such as:
+    // 
+    //   attribute: struct {
+    //       u, v: float;
+    //   } @Location=4
+    // 
+    // To specify attribute locations.
 }
 
 init :: (title: *u8) -> *GLFWwindow {
@@ -60,7 +57,7 @@ main :: () {
             .{ .{ 0.5 + 0.3,  0.5      , 0}, .{0, 1, 0, 1}, .{0.01} },
     ];
 
-    // This call infers the format from the type of the array and generates calls to glVertexAttribPointer.
+    // This call infers the vertex format from the type of the array and generates calls to glVertexAttribPointer.
     vertex_buffer := create_vertex_buffer(vertices, verbose = true);
 
     while !glfwWindowShouldClose(window) {
@@ -84,7 +81,6 @@ main :: () {
 
 
 
-/********VERTEX SHADER TEXT********/
 vertex_shader_text :: #string END
 #version 430 core
 
@@ -105,11 +101,9 @@ void main() {
     vertex_colour = attr_colour;
 }
 END
-/**********************************/
 
 
 
-/*******FRAGMENT SHADER TEXT*******/
 fragment_shader_text :: #string END
 #version 430 core
 
@@ -120,4 +114,3 @@ void main() {
     fragment_colour = vertex_colour;
 }
 END
-/**********************************/
