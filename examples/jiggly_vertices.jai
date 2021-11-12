@@ -69,7 +69,7 @@ main :: () {
 
         glUniform1f(0, cast(float) glfwGetTime());
 
-        // This call only passes Jai typechecking if both the shader and the buffer are validated against the same vertex format.
+        // This call only passes typechecking if both the shader and the buffer are getting validated against the same vertex format.
         draw(shader, vertex_buffer);
 
         glfwSwapBuffers(window);
