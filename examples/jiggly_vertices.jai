@@ -4,7 +4,7 @@
 #import "GL";
 #import "glfw";
 
-Jiggly_Coloured_Vertex :: struct {
+Jiggly_Vertex :: struct {
     // The names and locations of these sub-structs have to match the shader attributes in the GLSL code.
     attr_position: struct {
         x: float;
@@ -45,9 +45,10 @@ init :: (title: *u8) -> *GLFWwindow {
 main :: () {
     window := init("The fun colourful triangles");
 
-    shader := create_shader(vertex_shader_text, fragment_shader_text, Jiggly_Coloured_Vertex);
+    // This call generates asserts that validate that the shader inputs match the vertex struct.
+    shader := create_shader(vertex_shader_text, fragment_shader_text, Jiggly_Vertex);
 
-    vertices := Jiggly_Coloured_Vertex.[
+    vertices := Jiggly_Vertex.[
             .{ .{-0.5 - 0.3, -0.5      , 0}, .{0, 1, 0, 1}, .{0.05} },
             .{ .{-0.5 - 0.3,  0.5 + 0.3, 0}, .{0, 0, 1, 1}, .{0.05} },
             .{ .{ 0.5      ,  0.5 + 0.3, 0}, .{1, 0, 0, 1}, .{0.05} },
