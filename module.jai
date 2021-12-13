@@ -29,6 +29,8 @@ function for specifying that layout to the GPU. It demonstrates a bunch
 of Jai meta-features in a way that's not over-zealous.
 */
 
+
+// Hopefully these will give the same code generation as just an integer, but strongly typed over the vertex format.
 Vertex_Buffer :: struct(Vertex_Format: Type) {
     handle: u32;
 }
@@ -179,7 +181,7 @@ create_shader :: (vertex_text: string, fragment_text: string, $Vertex_Format: Ty
             /* Way more checks should be done here... and they should be optional so that they can be disabled in a release build. */
 
             append(*attributes, tprint("__attr%: GLint = glGetAttribLocation(program, \"%\");\n", it_index, it.name));
-            append(*attributes, tprint("assert(__attr% != -1, \"Attribute \\\"%\\\" from vertex format \\\"%\\\" is not represented in the shader. (This can be cause by unused attributes as well.)\");\n", it_index, it.name, vertex_format.name));
+            append(*attributes, tprint("assert(__attr% != -1, \"Attribute \\\"%\\\" from vertex format \\\"%\\\" is not represented in the shader. (This can be caused by unused attributes as well.)\");\n", it_index, it.name, vertex_format.name));
             append(*attributes, tprint("assert(__attr% == %, \"Attribute \\\"%\\\" from vertex format \\\"%\\\" is at location %, but in the shader it is at a different location.\");\n", it_index, it_index, it.name, vertex_format.name, it_index));
         }
 
