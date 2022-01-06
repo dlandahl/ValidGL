@@ -60,7 +60,6 @@ main :: () {
 
     // This call infers the vertex format from the type of the array and generates calls to glVertexAttribPointer.
     vertex_buffer := create_vertex_buffer(vertices, verbose = true);
-    a: Vertex_Buffer(Trembling_Vertex);
 
     while !glfwWindowShouldClose(window) {
         width, height : s32;
